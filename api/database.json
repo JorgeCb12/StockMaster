@@ -1,26 +1,62 @@
 {
-    "productos":[
-        {
-            "id":"001",
-            "nombre":"teclado",
-            "precioUnidad":20000,
-            "stock":5,
-            "descripcion":"teclado inalambrico"
-        },
-        {
-            "id":"002",
-            "nombre":"mouse",
-            "precioUnidad":5000,
-            "stock":20,
-            "descripcion":"mouse convencional"
-        },
-        {
-            "id":"003",
-            "nombre":"monitor",
-            "precioUnidad":20000,
-            "stock":6,
-            "descripcion":"monitor led"
-        }
-    ],
-    "usuarios":[]
+  "productos": [
+    {
+      "id": "001",
+      "nombre": "teclado multicolor",
+      "precioUnidad": 20000,
+      "stock": 9,
+      "descripcion": "teclado inalambrico"
+    },
+    {
+      "id": "002",
+      "nombre": "mouse",
+      "precioUnidad": 5000,
+      "stock": 20,
+      "descripcion": "mouse convencional"
+    },
+    {
+      "id": "003",
+      "nombre": "monitor",
+      "precioUnidad": 20000,
+      "stock": 6,
+      "descripcion": "monitor led"
+    },
+    {
+      "nombre": "torre gamer",
+      "precioUnidad": 15000000,
+      "stock": 1,
+      "descripcion": "torre gamer, para jugar y trabajar",
+      "id": "41cLNUTOuyg"
+    },
+    {
+      "nombre": "mackbook neo",
+      "precioUnidad": 3800000,
+      "stock": 6,
+      "descripcion": "mac barata para uso basico",
+      "id": "4QVBrOEmJZc"
+    },
+    {
+      "nombre": "mackbook pro",
+      "precioUnidad": 13000000,
+      "stock": 5,
+      "descripcion": "mac para trabajo pesado",
+      "id": "msoreuwI31g"
+    },
+    {
+      "nombre": "mackbook air",
+      "precioUnidad": 10000000,
+      "stock": 6,
+      "descripcion": "mack para corporativos",
+      "id": "yazGhDJsuZg"
+    },
+    {
+      "nombre": "iphone x",
+      "precioUnidad": 400000,
+      "stock": 1,
+      "descripcion": "primer iphone con identificacion facial",
+      "id": "sFMDMtZivU4"
+    }
+  ],
+  "usuarios": [],
+  "$schema": "./node_modules/json-server/schema.json"
 }
