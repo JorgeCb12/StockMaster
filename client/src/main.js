@@ -1,6 +1,5 @@
 import './styles/globals.css';
-import { alertaExitosa } from './utils/alerts';
-import Swal from 'sweetalert2';
+import { alertaExitosa, alertaConfirmacion, alertaError } from './utils/alerts';
 import { obtenerProductos, crearProducto, actualizarProducto as srvActualizarProducto, eliminarProducto as srvEliminarProducto } from './services/productos.service.js';
 
 const formulario = document.getElementById("product-form")
@@ -45,6 +44,7 @@ async function traeDatos() {
         actualizarEstadisticas(productos)
     } catch (error) {
         console.error("Error al traer datos:", error)
+        alertaError("Hubo un error al cargar los productos");
     }
 }
 
@@ -56,6 +56,7 @@ async function agregarProducto(producto) {
         formulario.reset()
     } catch (error) {
         console.error("Error al agregar:", error)
+        alertaError("Hubo un error al guardar el producto");
     }
 }
 
@@ -67,6 +68,7 @@ async function actualizarProducto(id, producto) {
         formulario.reset()
     } catch (error) {
         console.error("Error al actualizar:", error)
+        alertaError("Hubo un error al actualizar el producto");
     }
 }
 
@@ -77,6 +79,7 @@ async function eliminarProducto(id) {
         alertaExitosa("Producto eliminado")
     } catch (error) {
         console.error("Error al eliminar:", error)
+        alertaError("Hubo un error al eliminar el producto");
     }
 }
 
@@ -118,23 +121,13 @@ function pintarLosDatos(productos) {
     }
 }
 
-document.getElementById("inventory-list").addEventListener("click", (e) => {
+document.getElementById("inventory-list").addEventListener("click", async (e) => {
     if (e.target.closest(".btn-eliminar")) {
         const id = e.target.closest(".btn-eliminar").dataset.id;
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: "No podrás revertir esta acción",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#4f46e5',
-            cancelButtonColor: '#e11d48',
-            confirmButtonText: 'Sí, eliminar',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                eliminarProducto(id);
-            }
-        })
+        const confirmado = await alertaConfirmacion();
+        if (confirmado) {
+            eliminarProducto(id);
+        }
     }
 
     if (e.target.closest(".btn-editar")) {
