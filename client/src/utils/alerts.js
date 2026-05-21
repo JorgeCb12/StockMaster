@@ -1,4 +1,4 @@
-import Swal from "sweetalert2";
+import Swal from "sweetalert2"
 
 
 export function alertaExitosa(mensaje) {
@@ -9,13 +9,13 @@ export function alertaExitosa(mensaje) {
         timer: 3000,
         timerProgressBar: true,
         didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
+            toast.onmouseenter = Swal.stopTimer
+            toast.onmouseleave = Swal.resumeTimer
         }
     }).fire({
         icon: "success",
         title: mensaje
-    });
+    })
 }
 
 export function alertaError(mensaje) {
@@ -26,13 +26,13 @@ export function alertaError(mensaje) {
         timer: 4000,
         timerProgressBar: true,
         didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
+            toast.onmouseenter = Swal.stopTimer
+            toast.onmouseleave = Swal.resumeTimer
         }
     }).fire({
         icon: "error",
         title: mensaje
-    });
+    })
 }
 
 export async function alertaConfirmacion(titulo = '¿Estás seguro?', texto = 'No podrás revertir esta acción') {
@@ -45,6 +45,6 @@ export async function alertaConfirmacion(titulo = '¿Estás seguro?', texto = 'N
         cancelButtonColor: '#e11d48',
         confirmButtonText: 'Sí, eliminar',
         cancelButtonText: 'Cancelar'
-    });
-    return result.isConfirmed;
+    })
+    return result.isConfirmed
 }
