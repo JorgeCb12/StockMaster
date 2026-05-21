@@ -1,6 +1,6 @@
 import './styles/globals.css';
 import { alertaExitosa, alertaConfirmacion, alertaError } from './utils/alerts';
-import { obtenerProductos, crearProducto, actualizarProducto, eliminarProducto } from './services/productos.service.js';
+import { obtenerProductos, obtenerProductoPorId, crearProducto, actualizarProducto, eliminarProducto } from './services/productos.service.js';
 import { actualizarEstadisticas } from './ui/estadisticas.js';
 import { pintarLosDatos } from './ui/renderProductos.js';
 
@@ -22,7 +22,6 @@ const descripcionProducto = document.getElementById("descripcion")
 const tableBody = document.getElementById("inventory-list")
 
 let editandoId = null;
-let productosGlobal = [];
 
 formulario.addEventListener("submit", (event) => {
     event.preventDefault()
@@ -59,7 +58,7 @@ tableBody.addEventListener("click", async (e) => {
 
     if (e.target.closest(".btn-editar")) {
         const id = e.target.closest(".btn-editar").dataset.id;
-        prepararEdicion(id);
+        await prepararEdicion(id);
     }
 });
 
@@ -67,7 +66,6 @@ tableBody.addEventListener("click", async (e) => {
 async function traeDatos() {
     try {
         const productos = await obtenerProductos();
-        productosGlobal = productos;
         pintarLosDatos(productos)
         actualizarEstadisticas(productos)
     } catch (error) {
@@ -115,18 +113,22 @@ async function borrarProducto(id) {
 }
 
 // EDIT
-function prepararEdicion(id) {
-    const producto = productosGlobal.find(p => String(p.id) === String(id));
-    if (!producto) return;
+async function prepararEdicion(id) {
+    try {
+        const producto = await obtenerProductoPorId(id);
 
-    nombreProducto.value = producto.nombre;
-    precioUnidad.value = producto.precioUnidad;
-    stock.value = producto.stock;
-    descripcionProducto.value = producto.descripcion;
+        nombreProducto.value = producto.nombre;
+        precioUnidad.value = producto.precioUnidad;
+        stock.value = producto.stock;
+        descripcionProducto.value = producto.descripcion;
 
-    editandoId = id;
-    formTitle.textContent = "Editar Producto";
-    submitBtn.textContent = "Actualizar Producto";
+        editandoId = id;
+        formTitle.textContent = "Editar Producto";
+        submitBtn.textContent = "Actualizar Producto";
+    } catch (error) {
+        console.error("Error al preparar edición:", error)
+        alertaError("Hubo un error al cargar el producto");
+    }
 }
 
 traeDatos()

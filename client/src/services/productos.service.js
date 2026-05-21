@@ -16,6 +16,21 @@ export async function obtenerProductos() {
     }
 };
 
+export async function obtenerProductoPorId(id) {
+    try {
+        const response = await fetch(`${endpoint}/${id}`);
+
+        if (response.ok == false) {
+            throw new Error("Error al obtener el producto");
+        } else {
+            return await response.json();
+        }
+    } catch (error) {
+        console.error("Error en obtenerProductoPorId:", error);
+        throw error;
+    }
+};
+
 export async function crearProducto(producto) {
     try {
         const response = await fetch(endpoint, {
