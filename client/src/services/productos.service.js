@@ -58,6 +58,27 @@ export async function actualizarProducto(id, producto) {
     }
 };
 
+export async function actualizarParcialProducto(id, cambios) {
+    try {
+        const response = await fetch(`${endpoint}/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(cambios)
+        });
+
+        if (response.ok == false) {
+            throw new Error("Error al actualizar parcialmente el producto");
+        } else {
+            return await response.json();
+        }
+    } catch (error) {
+        console.error("Error en actualizarParcialProducto:", error);
+        throw error;
+    }
+};
+
 export async function eliminarProducto(id) {
     try {
         const response = await fetch(`${endpoint}/${id}`, {
