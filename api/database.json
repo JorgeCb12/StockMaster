@@ -1,13 +1,6 @@
 {
   "productos": [
     {
-      "id": "003",
-      "nombre": "monitor",
-      "precioUnidad": 20000,
-      "stock": 6,
-      "descripcion": "monitor led"
-    },
-    {
       "nombre": "torre gamer",
       "precioUnidad": 15000000,
       "stock": 1,
@@ -53,10 +46,16 @@
       "nombre": "monitor",
       "precioUnidad": 122,
       "stock": 122,
-      "descripcion": "testeo",
+      "descripcion": "regalar",
       "id": "353fEWLcfkg"
+    },
+    {
+      "nombre": "TECLADO MECANICO",
+      "precioUnidad": 25000,
+      "stock": 6,
+      "descripcion": "Muy buen teclado",
+      "id": "Kg5dQNU7Io4"
     }
   ],
-  "usuarios": [],
-  "$schema": "./node_modules/json-server/schema.json"
+  "usuarios": []
 }
