@@ -50,83 +50,14 @@
               Completa la información del artículo.
             </p>
 
-            <div class="space-y-5">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">
-                  Nombre del Producto
-                </label>
-                <input
-                  type="text"
-                  class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-
-              <div class="grid grid-cols-2 gap-3">
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2"
-                    >Precio</label
-                  >
-                  <input
-                    type="number"
-                    class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2"
-                    >Stock</label
-                  >
-                  <input
-                    type="number"
-                    class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2"
-                  >Descripción</label
-                >
-                <textarea
-                  rows="4"
-                  class="w-full px-3 py-2 border rounded-lg resize-none focus:ring-2 focus:ring-blue-500"
-                ></textarea>
-              </div>
-
-              <button
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-lg"
-              >
-                GUARDAR PRODUCTO
-              </button>
-
-              <button
-                class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2.5 rounded-lg"
-              >
-                LIMPIAR FORMULARIO
-              </button>
-            </div>
+            <div id="formContainer"></div>
           </div>
         </aside>
 
         <!-- Content -->
         <section class="lg:col-span-3">
           <!-- Stats -->
-          <div class="grid grid-cols-3 gap-4 mb-8">
-            <div class="bg-white p-6 rounded-xl border">
-              <p class="text-xs text-gray-500">Total SKU</p>
-              <p class="text-3xl font-bold"></p>
-            </div>
-
-            <div class="bg-white p-6 rounded-xl border">
-              <p class="text-xs text-gray-500">Valor Inventario</p>
-              <p class="text-2xl font-bold text-blue-600"></p>
-            </div>
-
-            <div class="bg-white p-6 rounded-xl border border-red-200">
-              <p class="text-xs text-gray-500">Stock Crítico</p>
-              <p class="text-3xl font-bold text-red-600"></p>
-            </div>
-          </div>
-
+          <div id="estadistica"></div>
           <!-- Table -->
           <div class="bg-white rounded-xl border overflow-hidden">
             <table class="w-full text-sm">
@@ -139,11 +70,13 @@
                 </tr>
               </thead>
 
-              <tbody id="renderPd" divide-y"></tbody>
+              <tbody id="renderPd"></tbody>
             </table>
           </div>
         </section>
       </div>
     </main>
   </body>
+
+  <script type="module" src="/src/main.js"></script>
 </html>
