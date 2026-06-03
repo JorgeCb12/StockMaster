@@ -1,8 +1,11 @@
-export const renderProduct = (products) => {
-  const renderPd = document.getElementById("renderPd");
+import { deleteProduct, getProductById } from "../services/productos.service";
+import { fillForm } from "./renderForm";
+
+export const renderTable = (products) => {
+  const tableBody = document.getElementById("tableBody");
+  tableBody.innerHTML = "";
   products.forEach((product) => {
-    renderPd.innerHTML += ` 
-    <tr>
+    tableBody.innerHTML += ` <tr>
         <td class="px-6 py-4">
         <p class="font-semibold">${product.nombre}</p>
         <p class="text-gray-500 text-sm">${product.descripcion}</p>
@@ -24,5 +27,35 @@ export const renderProduct = (products) => {
             </div>
         </td>
 </tr>`;
+  });
+};
+
+export const setupTable = (loadProducts) => {
+  const btnEliminar = document.querySelectorAll(".btn-eliminar");
+  btnEliminar.forEach((btn) => {
+    btn.addEventListener("click", async (event) => {
+      const id = event.currentTarget.dataset.id;
+
+      try {
+        await deleteProduct(id);
+        await loadProducts();
+      } catch (error) {
+        console.error(`Error al eliminar el producto: ${error.message}`);
+      }
+    });
+  });
+
+  const btnEditar = document.querySelectorAll(".btn-editar");
+  btnEditar.forEach((btn) => {
+    btn.addEventListener("click", async (event) => {
+      const id = event.currentTarget.dataset.id;
+
+      try {
+        const product = await getProductById(id);
+        fillForm(product);
+      } catch (error) {
+        console.error(`Error al editar el producto: ${error.message}`);
+      }
+    });
   });
 };

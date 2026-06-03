@@ -1,8 +1,10 @@
-import { addData } from "../services/productos.service";
+import { createProduct, updateProduct } from "../services/productos.service";
 
-export const renderData = () => {
-  const formContainer = document.getElementById("formContainer");
-  formContainer.innerHTML = `
+let editingProductId = null;
+
+export const renderForm = () => {
+  const containerForm = document.getElementById("containerForm");
+  containerForm.innerHTML = `
     <form id="product-form" class="p-8 space-y-6">
                   <div>
                     <label class="block text-sm font-bold text-slate-700 mb-2">Nombre del Producto</label>
@@ -37,33 +39,54 @@ export const renderData = () => {
     `;
 };
 
-export const setupData = (refreshProducts) => {
-  const productForm = document.getElementById("product-form");
+export const setupForm = (loadProducts) => {
+  const form = document.getElementById("product-form");
   const inputName = document.getElementById("inputName");
   const inputPrice = document.getElementById("inputPrice");
   const inputStock = document.getElementById("inputStock");
   const inputDescription = document.getElementById("inputDescription");
 
-  productForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const name = inputName.value.trim();
-    const price = parseFloat(inputPrice.value);
-    const stock = parseInt(inputStock.value, 10);
-    const description = inputDescription.value.trim();
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const name = inputName.value;
+    const price = Number(inputPrice.value);
+    const stock = Number(inputStock.value);
+    const descripcion = inputDescription.value;
 
     const newProduct = {
       nombre: name,
       precioUnidad: price,
       stock: stock,
-      descripcion: description,
+      descripcion: descripcion,
     };
 
     try {
-      await addData(newProduct);
-      await refreshProducts();
-      productForm.reset();
+      if (editingProductId === null) {
+        await createProduct(newProduct);
+        form.reset();
+        await loadProducts();
+      } else {
+        await updateProduct(editingProductId, newProduct);
+        form.reset();
+        await loadProducts();
+        editingProductId = null;
+      }
     } catch (error) {
-      alert("Hubo un error al guardar el producto");
+      console.error(`Error al crear el producto: ${error.message}`);
     }
   });
+};
+
+export const fillForm = (product) => {
+  editingProductId = product.id;
+
+  const inputName = document.getElementById("inputName");
+  const inputPrice = document.getElementById("inputPrice");
+  const inputStock = document.getElementById("inputStock");
+  const inputDescription = document.getElementById("inputDescription");
+
+  inputName.value = product.nombre;
+  inputPrice.value = product.precioUnidad;
+  inputStock.value = product.stock;
+  inputDescription.value = product.descripcion;
 };

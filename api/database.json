@@ -1,68 +1,27 @@
 {
   "productos": [
     {
-      "nombre": "torre gamer",
-      "precioUnidad": 800,
-      "stock": 1,
-      "descripcion": "torre gamer, para jugar y trabajar",
-      "id": "41cLNUTOuyg"
-    },
-    {
-      "nombre": "mackbook neo",
-      "precioUnidad": 500,
-      "stock": 6,
-      "descripcion": "mac barata para uso basico",
-      "id": "4QVBrOEmJZc"
-    },
-    {
-      "nombre": "mackbook pro",
-      "precioUnidad": 300,
-      "stock": 5,
-      "descripcion": "mac para trabajo pesado",
-      "id": "msoreuwI31g"
-    },
-    {
-      "nombre": "mackbook air",
-      "precioUnidad": 100,
-      "stock": 6,
-      "descripcion": "mack para corporativos",
-      "id": "yazGhDJsuZg"
-    },
-    {
-      "nombre": "iphone x",
-      "precioUnidad": 600,
-      "stock": 1,
-      "descripcion": "primer iphone con identificacion facial",
-      "id": "sFMDMtZivU4"
-    },
-    {
-      "nombre": "test",
-      "precioUnidad": 100,
-      "stock": 10,
-      "descripcion": "testeo",
-      "id": "8aJYlf3URYs"
-    },
-    {
-      "nombre": "monitor",
+      "nombre": "RELOJ INVICTA",
       "precioUnidad": 200,
-      "stock": 122,
-      "descripcion": "regalar",
-      "id": "353fEWLcfkg"
-    },
-    {
-      "nombre": "TECLADO MECANICO",
-      "precioUnidad": 150,
-      "stock": 6,
-      "descripcion": "Muy buen teclado",
-      "id": "Kg5dQNU7Io4"
-    },
-    {
-      "nombre": "iphone",
-      "precioUnidad": 800,
       "stock": 8,
-      "descripcion": "nuevo de paquete",
-      "id": "LhqHk2J1kFQ"
+      "descripcion": "reloj moderno",
+      "id": "mqm6wQkRPbo"
+    },
+    {
+      "nombre": "Monitor",
+      "precioUnidad": 200,
+      "stock": 4,
+      "descripcion": "monitor pantalla grande",
+      "id": "MgxCfJIjCfE"
+    },
+    {
+      "nombre": "PANTALLA",
+      "precioUnidad": 150,
+      "stock": 1,
+      "descripcion": "pantalla ultimo modelo",
+      "id": "ZPssj4m6knQ"
     }
   ],
-  "usuarios": []
+  "usuarios": [],
+  "$schema": "./node_modules/json-server/schema.json"
 }

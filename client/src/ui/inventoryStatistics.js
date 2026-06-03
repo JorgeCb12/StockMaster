@@ -1,14 +1,14 @@
-export const estadisticas = (products) => {
-  let sumaTotal = 0;
-  let stockCritico = 0;
-  const estadistica = document.getElementById("estadistica");
+export const renderStatistics = (products) => {
+  const containerStatistics = document.getElementById('containerStatistics')
+  let sumaTotal = 0
+  let stockCritico = 0
   products.forEach((product) => {
-    sumaTotal += product.precioUnidad;
-    if (product.stock <= 1) {
-      stockCritico++;
-    }
+    sumaTotal += product.precioUnidad
 
-    estadistica.innerHTML = `
+    if (product.stock <= 2) {
+      stockCritico++
+    }
+    containerStatistics.innerHTML = `
        <div class="grid grid-cols-3 gap-4 mb-8">
             <div class="bg-white p-6 rounded-xl border">
               <p class="text-xs text-gray-500">Total SKU</p>
@@ -25,6 +25,6 @@ export const estadisticas = (products) => {
               <p class="text-3xl font-bold text-red-600">${stockCritico}</p>
             </div>
           </div>
-  `;
-  });
-};
+  `
+  })
+}

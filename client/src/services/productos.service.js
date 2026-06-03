@@ -1,33 +1,73 @@
-const EndPoint = "http://localhost:3000/productos";
+const URL_PRODUCTS = "http://localhost:3000/productos";
 
-export const getData = async () => {
-  try {
-    const response = await fetch(EndPoint);
-    if (!response.ok) {
-      throw new Error("Error al obtener los productos");
-    }
-    return await response.json();
-  } catch (error) {
-    console.error("Error en obtenerProductos:", error);
-    throw error;
+export const getProducts = async () => {
+  const response = await fetch(URL_PRODUCTS);
+
+  if (!response.ok) {
+    throw new Error(
+      `Error al obtener los productos. URL: ${URL_PRODUCTS}. Estado: ${response.status} ${response.statusText}`,
+    );
+  }
+
+  return await response.json();
+};
+
+export const getProductById = async (id) => {
+  const response = await fetch(`${URL_PRODUCTS}/${id}`);
+
+  if (!response.ok) {
+    throw new Error(
+      `Error al obtener el producto. URL: ${URL_PRODUCTS}/${id}. Estado: ${response.status} ${response.statusText}`,
+    );
+  }
+
+  return await response.json();
+};
+
+// #-------------------------------------------#
+
+export const createProduct = async (newProduct) => {
+  const response = await fetch(URL_PRODUCTS, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(newProduct),
+  });
+  if (!response.ok) {
+    throw new Error(
+      `Error al crear los productos. URL: ${URL_PRODUCTS}. Estado: ${response.status} ${response.statusText}`,
+    );
+  }
+  return await response.json();
+};
+
+// #-------------------------------------------#
+
+export const deleteProduct = async (id) => {
+  const response = await fetch(`${URL_PRODUCTS}/${id}`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error(
+      `Error al eliminar el producto. URL: ${URL_PRODUCTS}/${id}. Estado: ${response.status} ${response.statusText}`,
+    );
   }
 };
 
-export const addData = async (newProduct) => {
-  try {
-    const response = await fetch(EndPoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newProduct),
-    });
-    if (!response.ok) {
-      throw new Error("Error al agregar el producto");
-    }
-    return await response.json();
-  } catch (error) {
-    console.error("Error en addData:", error);
-    throw error;
+export const updateProduct = async (id, newProduct) => {
+  const response = await fetch(`${URL_PRODUCTS}/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(newProduct),
+  });
+  if (!response.ok) {
+    throw new Error(
+      `Error al actualizar el producto. URL: ${URL_PRODUCTS}/${id}. Estado: ${response.status} ${response.statusText}`,
+    );
   }
+  return await response.json();
 };

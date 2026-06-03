@@ -1,20 +1,23 @@
-import { getData } from "./services/productos.service";
-import { renderProduct } from "./ui/RederProducts";
-import { estadisticas } from "./ui/estadisticasProductos";
-import { renderData, setupData } from "./ui/renderData";
+import { getProducts } from "./services/productos.service";
+import { renderStatistics } from "./ui/inventoryStatistics";
+import { renderForm, setupForm } from "./ui/renderForm";
+import { renderTable, setupTable } from "./ui/renderTable";
 
-const getProducts = async () => {
-  const products = await getData();
-
-  renderProduct(products);
-  estadisticas(products);
+const loadProducts = async () => {
+  try {
+    const products = await getProducts();
+    renderTable(products);
+    setupTable(loadProducts);
+    renderStatistics(products);
+  } catch (error) {
+    console.log(`Error al cargar los productos: ${error.message} `);
+  }
 };
 
 const init = async () => {
-  renderData();
-  setupData(getProducts);
-
-  await getProducts();
+  renderForm();
+  setupForm(loadProducts);
+  await loadProducts();
 };
 
 init();
